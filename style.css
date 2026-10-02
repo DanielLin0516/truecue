@@ -182,6 +182,30 @@ h2.sec-title { font: 900 clamp(36px, 5vw, 60px)/1.02 var(--display); margin: 10p
 .ticket li { padding-left: 20px; position: relative; }
 .ticket li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); }
 
+/* Problems and fixes: the hub and one page per fault */
+.more { margin: 26px 0 0; font-weight: 600; }
+.more a { text-decoration: none; }
+.doc .lede { font-size: 18px; color: var(--text2); }
+.doc .eyebrow a { color: var(--brass); text-decoration: none; }
+.demos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 520px; margin: 26px 0 8px; }
+.demos figure { margin: 0; }
+.demos canvas { width: 100%; height: auto; aspect-ratio: 3 / 4; display: block; border-radius: 20px; background: #0d2a1f;
+  box-shadow: inset 0 0 0 7px #2A1A0E, inset 0 0 0 8px rgba(243,215,149,.25), 0 20px 40px rgba(0,0,0,.4); }
+.demos figcaption { text-align: center; font: 800 18px/1 var(--display); margin-top: 10px; }
+.demos .bad { color: var(--bad); }
+.demos .good { color: var(--good); }
+.drill-pick { display: flex; align-items: center; gap: 14px; }
+.drill-pick img { width: 52px; height: 52px; transform: rotate(-4deg); filter: drop-shadow(0 4px 6px rgba(0,0,0,.4)); }
+.drill-pick b { font: 800 22px/1.1 var(--display); color: var(--cream); }
+.fault .contact { margin-top: 36px; }
+.fault .contact .mail { font-family: "Righteous", var(--display); font-weight: 400; }
+.others { columns: 2; column-gap: 32px; }
+.fault-list { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 12px; }
+.fault-list a { display: block; padding: 16px 18px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); text-decoration: none; }
+.fault-list a:hover { border-color: rgba(243,215,149,.35); }
+.fault-list b { display: block; font: 800 22px/1.15 var(--display); color: var(--brass-light); }
+.fault-list span { display: block; color: var(--text2); font-size: 15px; margin-top: 4px; }
+
 /* Support, privacy, terms */
 .doc { max-width: 760px; padding-block: 24px 64px; }
 .doc h1 { font: 900 clamp(38px, 6vw, 60px)/1.02 var(--display); margin: 10px 0 8px; }
@@ -235,6 +259,7 @@ footer .tm { margin: 16px 0 0; font-size: 12px; opacity: .7; }
   .deco-a { width: 70px; right: 8px; top: -30px; }
   .deco-b { display: none; }
   .deco-c { width: 66px; right: -4px; }
+  .others { columns: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .watch, .strip i, .lang summary .chev { transition: none; animation: none !important; }

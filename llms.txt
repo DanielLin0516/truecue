@@ -1,0 +1,35 @@
+# TrueCue
+
+> Wear your Apple Watch on your stroking hand. After every stroke it tells you whether it was straight, whether you accelerated and whether you held your finish. No sensor to buy.
+
+TrueCue is an iPhone and Apple Watch app by Twin Build for pool (8-ball, 9-ball), snooker and Chinese 8-ball players. The watch on the stroking hand measures every cue stroke and scores three things from 0 to 100: Straight, Accelerate, Pause & Finish. No sensor on the cue. When a stroke cannot be measured it shows "Not measured" instead of a score. Free for the first 3 sessions or 150 strokes, then a one-time purchase; no subscription, no ads, no account.
+
+## Pages
+
+- [Home](https://daniellin0516.github.io/truecue/): what TrueCue measures, the 7 drills, the iPhone app, the price
+- [Problems and fixes](https://daniellin0516.github.io/truecue/faults.html): 7 common cue stroke faults, their causes and fixes
+- [Support](https://daniellin0516.github.io/truecue/support.html): setup and frequently asked questions
+- [Privacy](https://daniellin0516.github.io/truecue/privacy.html): no data collected; practice stays on the user's devices, iCloud and Apple Health
+
+## Common cue stroke problems
+
+- [Back hand moving in](https://daniellin0516.github.io/truecue/fault-back-hand-in.html): Your back hand moves in toward your body as you stroke through. The cue turns on your bridge, so the tip goes the other way and the cue ball leaves the line.
+- [Back hand moving out](https://daniellin0516.github.io/truecue/fault-back-hand-out.html): Your back hand moves out away from your body as you stroke through. The cue turns on your bridge, so the tip goes the other way and the cue ball leaves the line.
+- [Twisting the wrist](https://daniellin0516.github.io/truecue/fault-wrist-twist.html): Your wrist turns during the stroke, which steers the cue tip off line.
+- [Slowing down at contact](https://daniellin0516.github.io/truecue/fault-slowing-down.html): Your hand is already slowing down when the tip hits the cue ball. The cue ball rolls short and the stroke feels unsure.
+- [No pause at the back](https://daniellin0516.github.io/truecue/fault-no-pause.html): You go straight from the backswing into the forward stroke, so any wobble in the backswing carries into the shot.
+- [Pulling back after contact](https://daniellin0516.github.io/truecue/fault-pulling-back.html): The moment the tip hits the ball, you pull the cue back. A short stroke doesn't need a long follow-through, but the tip should carry on a little before it stops.
+- [Moving at the finish](https://daniellin0516.github.io/truecue/fault-moving-at-finish.html): Your hand and body move right after the shot, which usually means you started moving before contact too.
+
+## Drills
+
+- Straight 10: 10 strokes in a row with Straight 85 or more
+- Pause Drill: Taps on your wrist set the rhythm; pause at the back on 8 of 10
+- Stop Shot: Soft and medium strokes; hold the finish on 8 of 10
+- Rhythm: 10 strokes with the same tempo
+- Same Force: 10 strokes at the same speed
+- Power Ladder: 3 soft, 3 medium, 3 hard, on call
+- Perfect 10: 10 strokes in a row scoring 85 or more
+
+Languages: English, 日本語, 한국어, 繁體中文, 简体中文, Español, Français (each page has hreflang alternates).
+Support email: twinbuilds30@gmail.com

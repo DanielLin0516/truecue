@@ -43,49 +43,23 @@
   }
 })();
 
-// The live table: a top-down cue strokes the cue ball; the wrist path draws in brass dots; on
-// contact the watch taps and rolls up the score, and the session strip grows by one bar.
-(() => {
-  const cv = document.getElementById("cv");
-  if (!cv) return;
+// The table: a top-down cue strokes the cue ball; the wrist path draws in brass dots. Used by the
+// home page (a run of strokes, each scored on the watch) and by each fault page (the fault and the
+// right way, side by side). A stroke is a set of knobs:
+//   drift   where the back hand ends up sideways (share of the table's width)
+//   wiggle  a sideways wobble while stroking (twisting the wrist)
+//   pause   ms held at the back          decel  the hand slows before contact (ball rolls short)
+//   jab     the cue is pulled back right after contact   wander  the hand moves during the finish
+function table(cv, strokes, onStroke) {
   const ctx = cv.getContext("2d");
-  const watch = document.getElementById("watch"), scoreEl = document.getElementById("score"),
-        verdictEl = document.getElementById("verdict"), ring = document.getElementById("ring"),
-        strip = document.getElementById("strip"), countEl = document.getElementById("count");
-  const V = { straight: watch.dataset.straight, in: watch.dataset.in, out: watch.dataset.out };
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const C = { good: "#7BD88F", warn: "#F2C14E", bad: "#FF8A7A" };
-  const level = s => s >= 85 ? C.good : s >= 70 ? C.warn : C.bad;
-  const strokes = [
-    { drift: 0, score: 92, v: "straight" },
-    { drift: .07, score: 74, v: "in" },
-    { drift: .008, score: 88, v: "straight" },
-    { drift: -.05, score: 79, v: "out" },
-    { drift: .004, score: 95, v: "straight" },
-  ];
-  let count = 0;
-  function addBar(s, fresh) {
-    const i = document.createElement("i");
-    i.style.height = (30 + (s - 60) * 1.6) + "%";
-    i.style.background = level(s);
-    if (fresh) i.className = "new";
-    strip.appendChild(i);
-    while (strip.children.length > 26) strip.firstChild.remove();
-    count++; countEl.textContent = "#" + count;
-  }
-  [86, 91, 78, 88, 93, 84, 90, 72, 89, 94, 87, 81, 92].forEach(s => addBar(s, false));
-
   let W = 0, H = 0;
   function size() {
     const r = cv.getBoundingClientRect(), dpr = Math.min(2, devicePixelRatio || 1);
     W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-  size(); addEventListener("resize", () => { size(); if (reduce) still(); });
-
   const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-  const easeIn = t => t * t * t;
-  const T = { settle: 500, back: 700, pause: 450, fwd: 320, hold: 1300, reset: 600 };
-  const total = Object.values(T).reduce((a, b) => a + b);
+  const easeIn = t => t * t * t, easeOut = t => 1 - Math.pow(1 - t, 3);
 
   function felt() {
     const g = ctx.createRadialGradient(W * .5, H * .1, 10, W * .5, H * .45, H * .8);
@@ -117,7 +91,115 @@
     ctx.fillStyle = "#5e86b8"; ctx.fillRect(-2, -w0 / 2, 3, w0);
     ctx.restore();
   }
-  function showScore(s) {
+
+  // The stroke at time t: the hand's pull (1 = full backswing, negative = past contact), its
+  // sideways share, and the timeline marks.
+  function timeline(s) {
+    const T = { settle: 500, back: 700, pause: s.pause ?? 450, fwd: s.decel ? 420 : 320, hold: 1300, reset: 600 };
+    const a = T.settle, b = a + T.back, c = b + T.pause, d = c + T.fwd, e = d + T.hold;
+    return { T, a, b, c, d, e, total: e + T.reset, hit: c + T.fwd * (s.decel ? .82 : .74) };
+  }
+  function pose(s, L, t) {
+    const { T, a, b, c, d, e } = L;
+    let pull = 0, lateral = 0, wob = 0, phase = "settle";
+    if (t < a) pull = 0;
+    else if (t < b) { phase = "back"; pull = ease((t - a) / T.back); }
+    else if (t < c) { phase = "pause"; pull = 1; }
+    else if (t < d) {
+      phase = "fwd"; const p = (t - c) / T.fwd;
+      pull = 1 - (s.decel ? easeOut(p) * 1.12 : easeIn(p) * 1.35); lateral = s.decel ? easeOut(p) : easeIn(p);
+      if (s.wiggle) wob = Math.sin(p * Math.PI * 3) * s.wiggle;
+    } else if (t < e) {
+      phase = "hold"; const q = (t - d) / T.hold;
+      pull = s.decel ? -.12 : -.35; lateral = 1;
+      if (s.jab) pull = -.35 + Math.min(1, q * 5) * .55;
+      if (s.wander) wob = Math.sin(q * Math.PI * 4) * s.wander * Math.min(1, q * 3);
+    } else {
+      phase = "reset"; const p = ease((t - e) / T.reset);
+      pull = (s.jab ? .2 : s.decel ? -.12 : -.35) * (1 - p); lateral = 1 - p;
+    }
+    return { pull, lateral, wob, phase };
+  }
+
+  let k = 0, t0 = performance.now(), shown = -1, trail = [], visible = true;
+  function draw(t) {
+    const s = strokes[k % strokes.length], L = timeline(s);
+    const bx = W * .5, by = H * .3, r = W * .045, handY = H * .86, contactY = by + r + 2;
+    const { pull, lateral, wob, phase } = pose(s, L, t);
+    const back = H * .13, tipY = contactY + 6 + pull * back;
+    const side = ((s.drift || 0) * lateral + wob) * W;
+    const hx = bx + side, hy = handY + pull * back;
+    const bridgeY = H * .58, bridgeX = bx + side * .15;
+    const dirx = bridgeX - hx, diry = bridgeY - hy, f = (tipY - hy) / diry;
+    const tx = hx + dirx * f;
+    let ballX = bx, ballY = by, ballA = 1;
+    if (t >= L.hit && t < L.e + L.T.reset) {
+      const q = Math.min(1, (t - L.hit) / 900), len = Math.hypot(dirx, diry);
+      const run = (1 - Math.pow(1 - q, 2)) * H * (s.decel ? .12 : .26);
+      if (!s._dir) s._dir = [dirx / len, diry / len];          // the ball keeps the line it was hit on
+      ballX = bx + s._dir[0] * run; ballY = by + s._dir[1] * run;
+      ballA = 1 - Math.max(0, q - .6) / .4;
+    }
+    if (phase === "fwd" || phase === "hold") trail.push([hx, hy]);
+    felt();
+    ctx.fillStyle = "rgba(243,215,149,.9)";
+    trail.forEach(([x, y], i) => { if (i % 2 === 0) { ctx.beginPath(); ctx.arc(x, y, 2.2, 0, 7); ctx.fill(); } });
+    if (t >= L.hit) ball(ballX, ballY, r, ballA);
+    ball(bx, by, r, t < L.hit ? 1 : phase === "reset" ? ease((t - L.e) / L.T.reset) : 0);
+    cue(tx, tipY, hx, hy);
+    if (onStroke && t >= L.d + 150 && shown !== k) { shown = k; onStroke(s); }
+    return L.total;
+  }
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!visible || document.hidden) { t0 = now; return; }
+    const total = timeline(strokes[k % strokes.length]).total;
+    let t = now - t0;
+    if (t > total) { strokes[k % strokes.length]._dir = null; k++; t0 = now; t = 0; trail = []; shown = -1; }
+    draw(t);
+  }
+  size();
+  // Measured again whenever the box changes: Safari can report the canvas before its CSS
+  // aspect ratio applies, which drew the balls as ovals.
+  new ResizeObserver(() => { size(); if (reduce) still(); }).observe(cv);
+  function still() {
+    // Reduce Motion: one frame, the finish of the first stroke with its path.
+    const s = strokes[0], L = timeline(s);
+    for (let t = L.c; t <= L.d + 400; t += 16) draw(t);
+  }
+  if (reduce) { still(); return; }
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(cv);
+  requestAnimationFrame(frame);
+}
+
+// Home: five strokes scored on the watch, the session strip growing by one bar each.
+(() => {
+  const cv = document.getElementById("cv");
+  if (!cv) return;
+  const watch = document.getElementById("watch"), scoreEl = document.getElementById("score"),
+        verdictEl = document.getElementById("verdict"), ring = document.getElementById("ring"),
+        strip = document.getElementById("strip"), countEl = document.getElementById("count");
+  const V = { straight: watch.dataset.straight, in: watch.dataset.in, out: watch.dataset.out };
+  const C = { good: "#7BD88F", warn: "#F2C14E", bad: "#FF8A7A" };
+  const level = s => s >= 85 ? C.good : s >= 70 ? C.warn : C.bad;
+  let count = 0;
+  function addBar(s, fresh) {
+    const i = document.createElement("i");
+    i.style.height = (30 + (s - 60) * 1.6) + "%";
+    i.style.background = level(s);
+    if (fresh) i.className = "new";
+    strip.appendChild(i);
+    while (strip.children.length > 26) strip.firstChild.remove();
+    count++; countEl.textContent = "#" + count;
+  }
+  [86, 91, 78, 88, 93, 84, 90, 72, 89, 94, 87, 81, 92].forEach(s => addBar(s, false));
+  table(cv, [
+    { drift: 0, score: 92, v: "straight" },
+    { drift: .07, score: 74, v: "in" },
+    { drift: .008, score: 88, v: "straight" },
+    { drift: -.05, score: 79, v: "out" },
+    { drift: .004, score: 95, v: "straight" },
+  ], s => {
     watch.classList.remove("tap"); void watch.offsetWidth; watch.classList.add("tap");
     const col = level(s.score);
     ring.style.borderColor = col; scoreEl.style.color = col;
@@ -126,55 +208,17 @@
     const step = () => { n = Math.min(s.score, n + Math.ceil((s.score - n) / 4) + 1); scoreEl.textContent = n; if (n < s.score) requestAnimationFrame(step); };
     step();
     addBar(s.score, true);
-  }
-  function still() {
-    // One frame for Reduce Motion: the follow-through of a straight stroke and its path.
-    const bx = W * .5, handY = H * .86;
-    felt();
-    ctx.fillStyle = "rgba(243,215,149,.9)";
-    for (let i = 0; i < 12; i++) { ctx.beginPath(); ctx.arc(bx, handY - H * .045 - i * 6, 2.2, 0, 7); ctx.fill(); }
-    ball(bx, H * .16, W * .045, 1);
-    cue(bx, H * .3 + W * .045 - H * .04, bx, handY - H * .045);
-  }
-  if (reduce) { still(); return; }
+  });
+})();
 
-  let k = 0, t0 = performance.now(), shown = -1, trail = [], visible = true;
-  new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(cv);
-  function frame(now) {
-    requestAnimationFrame(frame);
-    if (!visible || document.hidden) { t0 = now - Math.min(now - t0, total); return; }
-    const s = strokes[k % strokes.length];
-    let t = now - t0;
-    if (t > total) { k++; t0 = now; t = 0; trail = []; shown = -1; }
-    const bx = W * .5, by = H * .3, r = W * .045, handY = H * .86, contactY = by + r + 2;
-    let pull = 0, lateral = 0, ballY = by, ballX = bx, ballA = 1, phase = "settle";
-    const a = T.settle, b = a + T.back, c = b + T.pause, d = c + T.fwd, e = d + T.hold;
-    if (t < a) pull = 0;
-    else if (t < b) { phase = "back"; pull = ease((t - a) / T.back); }
-    else if (t < c) { phase = "pause"; pull = 1; }
-    else if (t < d) { phase = "fwd"; const p = easeIn((t - c) / T.fwd); pull = 1 - p * 1.35; lateral = p; }
-    else if (t < e) { phase = "hold"; pull = -.35; lateral = 1; }
-    else { phase = "reset"; const p = ease((t - e) / T.reset); pull = -.35 * (1 - p); lateral = 1 - p; }
-    const back = H * .13, tipY = contactY + 6 + pull * back;
-    const hx = bx + s.drift * W * lateral, hy = handY + pull * back;
-    const bridgeY = H * .58, bridgeX = bx + s.drift * W * lateral * .15;
-    const dirx = bridgeX - hx, diry = bridgeY - hy, f = (tipY - hy) / diry;
-    const tx = hx + dirx * f;
-    const hit = c + T.fwd * .74;
-    if (t >= hit && t < e + T.reset) {
-      const q = Math.min(1, (t - hit) / 900), len = Math.hypot(dirx, diry);
-      const run = (1 - Math.pow(1 - q, 2)) * H * .26;
-      ballX = bx + dirx / len * run; ballY = by + diry / len * run;
-      ballA = 1 - Math.max(0, q - .6) / .4;
-    }
-    if (phase === "fwd" || phase === "hold") trail.push([hx, hy]);
-    felt();
-    ctx.fillStyle = "rgba(243,215,149,.9)";
-    trail.forEach(([x, y], i) => { if (i % 2 === 0) { ctx.beginPath(); ctx.arc(x, y, 2.2, 0, 7); ctx.fill(); } });
-    if (t >= hit) ball(ballX, ballY, r, ballA);
-    ball(bx, by, r, t < hit ? 1 : phase === "reset" ? ease((t - e) / T.reset) : 0);
-    cue(tx, tipY, hx, hy);
-    if (t >= c + T.fwd + 150 && shown !== k) { shown = k; showScore(s); }
-  }
-  requestAnimationFrame(frame);
+// Fault pages: <canvas class="demo" data-fault="backHandIn" data-mode="wrong|right">.
+(() => {
+  const FAULTS = {
+    backHandIn: { drift: .13 }, backHandOut: { drift: -.12 }, wristTwist: { wiggle: .025 },
+    decelerating: { decel: true }, noPause: { pause: 0 }, jab: { jab: true }, finishMoving: { wander: .035 },
+  };
+  document.querySelectorAll("canvas.demo").forEach(cv => {
+    const wrong = cv.dataset.mode === "wrong";
+    table(cv, [wrong ? Object.assign({}, FAULTS[cv.dataset.fault]) : { drift: 0 }]);
+  });
 })();
