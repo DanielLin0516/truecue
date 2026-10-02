@@ -1,112 +1,120 @@
 <!doctype html>
-<html lang="ja">
+<html lang="ja" data-folder="ja" data-page="index">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TrueCue：Apple Watch のストロークコーチ</title>
-<meta name="description" content="キューを握る手の Apple Watch で、ビリヤードのストロークを1回ごとに採点。直線・加速・静止・フィニッシュの3つの指標と、癖の直し方。センサーの購入は不要です。">
+<title>TrueCue：ビリヤード・スヌーカーの Apple Watch ストロークコーチ</title>
+<meta name="description" content="キューを握る手に Apple Watch を着けるだけ。1回ごとに、まっすぐだったか、加速できたか、フィニッシュで静止できたかを教えてくれます。センサーの購入は不要です。">
 <meta name="theme-color" content="#0B231A">
-<meta property="og:title" content="TrueCue：Apple Watch のストロークコーチ">
-<meta property="og:description" content="キューを握る手の Apple Watch で、ビリヤードのストロークを1回ごとに採点。直線・加速・静止・フィニッシュの3つの指標と、癖の直し方。センサーの購入は不要です。">
+<link rel="canonical" href="https://daniellin0516.github.io/truecue/ja/">
+<link rel="alternate" hreflang="en" href="https://daniellin0516.github.io/truecue/">
+<link rel="alternate" hreflang="ja" href="https://daniellin0516.github.io/truecue/ja/">
+<link rel="alternate" hreflang="ko" href="https://daniellin0516.github.io/truecue/ko/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://daniellin0516.github.io/truecue/zh-hant/">
+<link rel="alternate" hreflang="zh-Hans" href="https://daniellin0516.github.io/truecue/zh-hans/">
+<link rel="alternate" hreflang="es-419" href="https://daniellin0516.github.io/truecue/es/">
+<link rel="alternate" hreflang="fr" href="https://daniellin0516.github.io/truecue/fr/">
+<link rel="alternate" hreflang="x-default" href="https://daniellin0516.github.io/truecue/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TrueCue">
+<meta property="og:title" content="TrueCue：ビリヤード・スヌーカーの Apple Watch ストロークコーチ">
+<meta property="og:description" content="キューを握る手に Apple Watch を着けるだけ。1回ごとに、まっすぐだったか、加速できたか、フィニッシュで静止できたかを教えてくれます。センサーの購入は不要です。">
+<meta property="og:url" content="https://daniellin0516.github.io/truecue/ja/">
+<meta property="og:image" content="https://daniellin0516.github.io/truecue/og.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preload" href="../fonts/BigShouldersDisplay.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../style.css">
-<link rel="alternate" hreflang="en" href="../">
-<link rel="alternate" hreflang="ja" href="../ja/">
-<link rel="alternate" hreflang="ko" href="../ko/">
-<link rel="alternate" hreflang="zh-Hant-TW" href="../zh-hant/">
-<link rel="alternate" hreflang="zh-Hans" href="../zh-hans/">
-<link rel="alternate" hreflang="es-419" href="../es/">
-<link rel="alternate" hreflang="fr" href="../fr/">
+<script src="../app.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "TrueCue", "operatingSystem": "iOS, watchOS", "applicationCategory": "SportsApplication", "description": "キューを握る手に Apple Watch を着けるだけ。1回ごとに、まっすぐだったか、加速できたか、フィニッシュで静止できたかを教えてくれます。センサーの購入は不要です。", "url": "https://daniellin0516.github.io/truecue/ja/", "inLanguage": "ja", "image": "https://daniellin0516.github.io/truecue/og.png", "publisher": {"@type": "Organization", "name": "Twin Build"}}</script>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
 <div class="wrap">
-<header class="top">
-  <a class="brand" href="../ja/"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="11" fill="#133226" stroke="#6E5A33"/><path d="M8 27 L32 13" stroke="#B8C2B0" stroke-width="1.4" stroke-dasharray="2.5 2.5" opacity=".7"/><path d="M8 27 C16 23.5 22 18.5 32 13" stroke="#D9B26A" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="32" cy="13" r="4.2" fill="#F5EEDC"/></svg><div><b>TrueCue</b><span>Apple Watch のストロークコーチ</span></div></a>
-  <nav class="nav" aria-label="サイト"><a href="../ja/" aria-current="page">ホーム</a><a href="../ja/support.html">サポート</a><a href="../ja/privacy.html">プライバシー</a><a href="../ja/terms.html">利用規約</a></nav>
-</header>
-<nav class="langs" aria-label="言語"><span class="label"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="6.3"/><path d="M1.7 8h12.6M8 1.7c2 2 2 10.6 0 12.6M8 1.7c-2 2-2 10.6 0 12.6"/></svg>言語</span><a href="../" hreflang="en" lang="en">English</a><a href="../ja/" hreflang="ja" lang="ja" aria-current="true">日本語</a><a href="../ko/" hreflang="ko" lang="ko">한국어</a><a href="../zh-hant/" hreflang="zh-Hant-TW" lang="zh-Hant-TW">繁體中文</a><a href="../zh-hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a><a href="../es/" hreflang="es-419" lang="es-419">Español</a><a href="../fr/" hreflang="fr" lang="fr">Français</a></nav>
+  <header class="top">
+    <a class="mark" href="../ja/">TrueCue</a>
+    <details class="lang" id="lang">
+      <summary aria-label="言語"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="6.3"/><path d="M1.7 8h12.6M8 1.7c2 2 2 10.6 0 12.6M8 1.7c-2 2-2 10.6 0 12.6"/></svg><span>日本語</span><svg class="chev" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></summary>
+      <ul><li><a href="../" hreflang="en" lang="en" data-folder="">English</a></li><li><a href="../ja/" hreflang="ja" lang="ja" data-folder="ja" aria-current="page">日本語</a></li><li><a href="../ko/" hreflang="ko" lang="ko" data-folder="ko">한국어</a></li><li><a href="../zh-hant/" hreflang="zh-Hant-TW" lang="zh-Hant-TW" data-folder="zh-hant">繁體中文</a></li><li><a href="../zh-hans/" hreflang="zh-Hans" lang="zh-Hans" data-folder="zh-hans">简体中文</a></li><li><a href="../es/" hreflang="es-419" lang="es-419" data-folder="es">Español</a></li><li><a href="../fr/" hreflang="fr" lang="fr" data-folder="fr">Français</a></li></ul>
+    </details>
+  </header>
+</div>
 <main id="main">
-<section class="hero">
+<div class="wrap hero">
   <div>
-    <p class="kicker">ビリヤード · スヌーカー · Apple Watch</p>
-    <h1>そのストローク、<em>まっすぐ</em>でしたか？</h1>
-    <p class="lede">キューを握る手に Apple Watch を着けて、いつも通り撞くだけ。1回ごとに手首に振動が届き、スコアが出ます。まっすぐだったか、インパクトで加速できたか、バックで止まってフィニッシュで静止できたか。そして直し方まで教えてくれます。キューにセンサーを付ける必要も、ほかの機材も要りません。</p>
-    <p class="pill"><i></i>まもなく App Store で配信</p>
+    <div class="eyebrow">Apple Watch のストロークコーチ</div>
+    <h1 class="big">そのストローク、まっすぐでしたか？<em>Apple Watch が教えてくれます</em></h1>
+    <p class="lede">キューを握る手に Apple Watch を着けて、いつも通り撞くだけ。1回ごとに手首に振動が届き、スコアが出ます。後ろの手がぶれなかったか、インパクトまで加速できたか、フィニッシュで静止できたか。キューに付けるものは何もありません。</p>
+    <div class="cta"><span class="store"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.8-3.5.8-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.6s-2.5-1-2.5-3.6zM14.1 5.6c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.1-.5 2.8-1.3z"/></svg>まもなく App Store で配信</span><small>最初の3セッション無料 · 買い切り</small></div>
   </div>
-  <div class="showcase">
-    <div class="watch" role="img" aria-label="スコア94と3つの評価マークを表示した Apple Watch">
-      <div class="screen">
-        <div class="row"><span>12:48</span><span>23ストローク</span></div>
-        <div class="score">94</div>
-        <div class="cap">直前のストローク</div>
-        <div class="marks"><div><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" stroke="#7BD88F"><circle cx="12" cy="12" r="10.4" fill="none" stroke-width="1.8"/><path d="M7.5 12.3l3 3 6-6.3" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>直線</span></div><div><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" stroke="#7BD88F"><circle cx="12" cy="12" r="10.4" fill="none" stroke-width="1.8"/><path d="M7.5 12.3l3 3 6-6.3" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>加速</span></div><div><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" stroke="#F2C14E"><circle cx="12" cy="12" r="10.4" fill="none" stroke-width="1.8"/><path d="M12 7v6" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="16.6" r="1.35" stroke="none" fill="#F2C14E"/></svg><span>静止</span></div></div>
-      </div>
+  <div class="stage" role="img" aria-label="デモ：Apple Watch が1回ごとに採点">
+    <div class="table"><canvas id="cv"></canvas><div class="rail"></div></div>
+    <div class="watch" id="watch" data-straight="直線" data-in="後ろの手が内に入る" data-out="後ろの手が外に開く">
+      <div class="ring" id="ring"></div>
+      <div><div class="score" id="score">92</div><div class="verdict" id="verdict">直線</div></div>
     </div>
-    <div class="path"><svg viewBox="0 0 320 120" role="img" aria-label="静止 → インパクト → フィニッシュ">
-  <line x1="24" y1="64" x2="298" y2="64" stroke="#B8C2B0" stroke-opacity=".55" stroke-width="1.5" stroke-dasharray="5 5"/>
-  <path d="M40 64 C 110 64, 160 60, 206 58 S 270 57, 284 58" fill="none" stroke="#D9B26A" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="40" cy="64" r="5" fill="#F5EEDC"/><circle cx="206" cy="58" r="6" fill="#7BD88F"/><circle cx="284" cy="58" r="5" fill="#F5EEDC"/>
-  <text x="40" y="92" fill="#B8C2B0" font-size="12" text-anchor="middle" font-family="-apple-system, sans-serif">静止</text>
-  <text x="206" y="92" fill="#B8C2B0" font-size="12" text-anchor="middle" font-family="-apple-system, sans-serif">インパクト</text>
-  <text x="284" y="92" fill="#B8C2B0" font-size="12" text-anchor="middle" font-family="-apple-system, sans-serif">フィニッシュ</text>
-</svg><p>真上から見た手首の軌跡と、まっすぐの基準線。後ろの手が内へ約1°：直線94。</p></div>
+    <div class="strip" id="strip" aria-hidden="true"></div>
+    <div class="strip-cap" aria-hidden="true"><span>このセッションの全ストローク</span><span id="count"></span></div>
   </div>
-</section>
+</div>
 
-<section class="block" aria-labelledby="m">
-  <p class="label-sec">3つの指標</p>
-  <h2 id="m">見るのは、この3つだけ</h2>
-  <p class="muted">1回ごとに0〜100で採点し、キューのスピード、強さ、テンポも表示します。採点の基準は全員同じで、厳しさは「練習の設定」で選べます。インパクト直後にキューを引き戻したときはコーチが指摘しますが、ストップショットのような短いストロークは減点しません。</p>
-  <div class="grid3"><div class="card metric"><h3>直線</h3><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" stroke="#7BD88F"><circle cx="12" cy="12" r="10.4" fill="none" stroke-width="1.8"/><path d="M7.5 12.3l3 3 6-6.3" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><p>手球に向かう途中で、後ろの手が内に入ったり外に開いたり、手首がねじれたりしていないか。</p></div><div class="card metric"><h3>加速</h3><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" stroke="#7BD88F"><circle cx="12" cy="12" r="10.4" fill="none" stroke-width="1.8"/><path d="M7.5 12.3l3 3 6-6.3" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><p>インパクトの瞬間、キューはまだ加速していたか、もう減速していたか。</p></div><div class="card metric"><h3>静止・フィニッシュ</h3><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" stroke="#7BD88F"><circle cx="12" cy="12" r="10.4" fill="none" stroke-width="1.8"/><path d="M7.5 12.3l3 3 6-6.3" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><p>バックスイングの終わりで一瞬止まれたか。フィニッシュでピタッと止まれたか。</p></div></div>
-</section>
+<section class="sec" aria-labelledby="m"><div class="wrap">
+  <div class="eyebrow">1回ごとに見る3つのこと</div>
+  <h2 class="sec-title" id="m">直線 · 加速 · 静止・フィニッシュ</h2>
+  <p class="sub">0〜100で採点、85以上なら上出来。キューのスピード、強さ、テンポも毎回表示します。</p>
+  <div class="metrics"><div class="metric"><svg viewBox="0 0 300 84" aria-hidden="true"><line x1="150" y1="6" x2="150" y2="78" stroke="#B8C2B0" stroke-dasharray="3 5" opacity=".5"/>
+<path d="M150 78 C150 60 152 40 162 8" stroke="#F2C14E" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="162" cy="8" r="5" fill="#F5EEDC"/>
+<text x="172" y="50" fill="#F2C14E" font-size="12" font-family="-apple-system, PingFang SC, Hiragino Sans, Apple SD Gothic Neo, sans-serif">後ろの手が内側に 2.4°</text></svg><h3>直線</h3><p>手球に向かう途中で、後ろの手が内に入ったり外に開いたり、手首がねじれたりしていないか？</p></div><div class="metric"><svg viewBox="0 0 300 84" aria-hidden="true"><path d="M10 76 C90 74 150 60 200 30 S 260 8 290 6" stroke="#7BD88F" stroke-width="3" fill="none" stroke-linecap="round"/>
+<line x1="214" y1="6" x2="214" y2="80" stroke="#F3D795" stroke-width="1.5" stroke-dasharray="2 3"/><text x="222" y="70" fill="#F3D795" font-size="12" font-family="-apple-system, PingFang SC, Hiragino Sans, Apple SD Gothic Neo, sans-serif">インパクト</text></svg><h3>加速</h3><p>インパクトの瞬間、キューはまだ加速していたか？もう減速していなかったか？</p></div><div class="metric"><svg viewBox="0 0 300 84" aria-hidden="true"><g fill="#D9B26A"><circle cx="30" cy="42" r="6"/><circle cx="70" cy="42" r="6"/></g>
+<rect x="92" y="30" width="66" height="24" rx="12" fill="none" stroke="#D9B26A" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="125" y="47" fill="#D9B26A" font-size="12" text-anchor="middle" font-family="-apple-system, PingFang SC, Hiragino Sans, Apple SD Gothic Neo, sans-serif">静止</text>
+<path d="M170 42 H 250" stroke="#7BD88F" stroke-width="3" stroke-linecap="round"/><rect x="258" y="28" width="28" height="28" rx="6" fill="#7BD88F" opacity=".25"/>
+<text x="272" y="72" fill="#7BD88F" font-size="11" text-anchor="middle" font-family="-apple-system, PingFang SC, Hiragino Sans, Apple SD Gothic Neo, sans-serif">フィニッシュ</text></svg><h3>静止・フィニッシュ</h3><p>バックスイングの終わりで一瞬止まり、フィニッシュでキューをピタッと止める</p></div></div>
+  <p class="nomeasure"><i></i>バンドが緩い、ストロークが途中で止まった、ジャンプショットやマッセ：そんなときは「計測不可」。まちがったスコアより、スコアなしを選びます</p>
+</div></section>
 
-<section class="block" aria-labelledby="f">
-  <p class="label-sec">できること</p>
-  <h2 id="f">手首にコーチを</h2>
-  <div class="grid3"><div class="card feature"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3.5a6 6 0 0 1 3.6 10.8c-.7.5-1.1 1.3-1.1 2.2v.5h-5v-.5c0-.9-.4-1.7-1.1-2.2A6 6 0 0 1 12 3.5z M9.5 20h5"/></svg><h3>直し方</h3><p>癖ごとに、わかりやすい解説、よくある原因、直し方、おすすめのドリル。3D デモで悪い例と良い例を見比べられます。</p></div><div class="card feature"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg><h3>7つのドリル</h3><p>直線10、静止ドリル、ストップショット、リズム、同じ力、力の階段、パーフェクト 10。どれも目標がはっきりしていて、続けるとステッカーがもらえます。</p></div><div class="card feature"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12h7"/></svg><h3>試合モード</h3><p>振動なし、画面にスコアも出さずに全ストロークを記録。本番のプレイに集中できます。</p></div><div class="card feature"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="4" y="3.5" width="9" height="17" rx="2"/><path d="M15.5 9c1.5 1.6 1.5 4.4 0 6 M18.5 6.5c3 3 3 8 0 11"/></svg><h3>手首の動きをライブ表示</h3><p>手を動かすと、iPhone の画面のキューも一緒に動きます。キャリブレーションのときに便利です。</p></div><div class="card feature"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 19.5h16 M6 16l4-5 3.5 3 5-7"/></svg><h3>iPhone でふり返り</h3><p>セッションのまとめ、1回ごとの手首の軌跡とスピードの曲線、週ごとの推移。練習後すぐにシェア用カードも。</p></div><div class="card feature"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="6" y="5" width="12" height="14" rx="3.5"/><path d="M9 2.5h6 M9 21.5h6 M12 9v3l2 1.5"/></svg><h3>文字盤にも</h3><p>ウィジェットで前回の練習の平均スコアを表示。</p></div></div>
-</section>
+<section class="sec drills" aria-labelledby="d"><div class="wrap">
+  <img class="deco deco-a" src="../img/badge.fire.png" alt="" loading="lazy">
+  <img class="deco deco-b" src="../img/badge.eight.png" alt="" loading="lazy">
+  <div class="eyebrow">7つのドリル</div>
+  <h2 class="sec-title" id="d">苦手なところを集中練習</h2>
+  <p class="sub">「練習」タブが、いちばん多い癖に合ったドリルをおすすめ。撞くたびに Apple Watch がカウントし、達成したら知らせます</p>
+  <ul class="drill-list"><li><img src="../img/drill.straight10.png" alt="" width="52" height="52" loading="lazy"><b>直線10</b><span>直線85以上を10回連続</span></li><li><img src="../img/drill.pauseDrill.png" alt="" width="52" height="52" loading="lazy"><b>静止ドリル</b><span>手首の振動でリズムをとり、10回中8回バックで静止</span></li><li><img src="../img/drill.stopShot.png" alt="" width="52" height="52" loading="lazy"><b>ストップショット</b><span>弱と中の強さで、10回中8回フィニッシュを静止</span></li><li><img src="../img/drill.rhythm.png" alt="" width="52" height="52" loading="lazy"><b>リズム</b><span>10回を同じテンポで</span></li><li><img src="../img/drill.sameForce.png" alt="" width="52" height="52" loading="lazy"><b>同じ力</b><span>10回を同じスピードで</span></li><li><img src="../img/drill.powerLadder.png" alt="" width="52" height="52" loading="lazy"><b>力の階段</b><span>合図に合わせて弱3回、中3回、強3回</span></li><li><img src="../img/drill.perfect10.png" alt="" width="52" height="52" loading="lazy"><b>パーフェクト 10</b><span>85点以上を10回連続</span></li></ul>
+</div></section>
 
-<section class="block" aria-labelledby="h">
-  <p class="label-sec">正直なスコア</p>
-  <h2 id="h">あいまいなら採点しない</h2>
-  <div class="grid2">
-    <div class="card">
-      <p class="muted">判定に自信がないストロークは、スコアの代わりに「計測不可」と表示。まちがったスコアは出しません。</p>
+<section class="sec" aria-labelledby="p"><div class="wrap phone">
+  <div>
+    <div class="eyebrow">iPhone で</div>
+    <h2 class="sec-title" id="p">癖を見て、直す</h2>
+    <div class="feats"><div class="feat"><h3>キューが手首と一緒に動く</h3><p>撞きながら iPhone を開くと、画面のキューが手首に合わせて動きます</p></div><div class="feat"><h3>3D デモで悪い例と良い例</h3><p>よくある7つの癖を、スローモーションのデモ、よくある原因、直し方で</p></div><div class="feat"><h3>月ごとの上達</h3><p>1回ごとのスコアバー、指標ごとの推移、どのストロークでも手首の軌跡とスピード</p></div><div class="feat"><h3>スコアを大きく見せるシェアカード</h3><p>練習後に画像1枚で、仲間やコーチに</p></div></div>
+  </div>
+  <div class="poster-wrap" aria-hidden="true">
+    <img class="deco deco-d" src="../img/badge.k.png" alt="" loading="lazy">
+    <div class="poster">
+      <div class="who">Alex · 8ボール</div>
+      <div><div class="big">91</div><div class="cap">このセッションの平均</div></div>
+      <div class="trio"><div>87<small>直線</small></div><div>91<small>加速</small></div><div>96<small>静止・フィニッシュ</small></div></div>
+      <div class="foot"><span>10月2日 · 48ストローク · 32分</span><b>TrueCue</b></div>
     </div>
-    <div class="card">
-      <h3>できないことも、正直に</h3>
-      <ul class="clean small muted"><li>計測するのは手首で、キューではありません。手首が動かずキューだけが曲がっていても表示されません。</li><li>バンドが緩いとデータが乱れます。Apple Watch はきつめに着けてください。</li><li>キューを大きく立てるジャンプショットやマッセは採点しません。</li><li>手首の軌跡に出るミリ単位の値は図のための推定値です。スコアは角度で決まります。</li></ul>
-    </div>
   </div>
-</section>
+</div></section>
 
-<section class="block" aria-labelledby="w">
-  <p class="label-sec">対応する Apple Watch</p>
-  <h2 id="w">Apple Watch Series 6 以降で使えます</h2>
-  <div class="tablewrap"><table class="table"><thead><tr><th scope="col">モード</th><th scope="col">Apple Watch</th><th scope="col">できること</th></tr></thead><tbody><tr><td>高精度</td><td>Series 8、9、10、11<br>SE（第2世代・第3世代）<br>Ultra、Ultra 2、Ultra 3</td><td>毎秒800回の計測。すべての機能が使え、インパクトと引き戻しを最も正確にとらえます。</td></tr><tr><td>標準</td><td>Series 6、7</td><td>毎秒100回の計測。すべての機能が使え、採点の基準も同じです。インパクトと引き戻しの判定はやや粗くなることがあります。</td></tr></tbody></table></div>
-  <p class="muted small" style="margin-top:12px">watchOS 11 以降が必要です（iPhone App は iOS 18 以降）。watchOS 26 のままの Apple Watch にも完全対応しています。SE（第2世代）で高精度モードを開始できない場合は、自動で標準に切り替わります。Series 5 以前と SE（第1世代）には対応していません。</p>
-</section>
-
-<section class="block" aria-labelledby="p">
-  <p class="label-sec">価格</p>
-  <div class="card price">
-    <div><h2 id="p" class="big">無料で試して、買い切り。</h2><p class="muted">最初の3セッション（または150ストロークの早いほう）まで、すべての機能を無料でお試しいただけます。その後は一度の購入でずっと使えます。ストローク用センサーのほんの一部の価格です。</p></div>
-    <ul class="clean check"><li>買い切り（1回の購入）</li><li>サブスクなし</li><li>広告なし</li><li>ファミリー共有に対応</li><li>新しい iPhone や Apple Watch でも Apple アカウントで復元</li></ul>
+<section class="sec" aria-labelledby="t"><div class="wrap"><div class="ticket-wrap">
+  <img class="deco deco-c" src="../img/badge.cup.png" alt="" loading="lazy">
+  <div class="ticket">
+    <div><div class="eyebrow">価格</div><h2 class="sec-title" id="t">まず無料で練習してから決める</h2><p>最初の3セッションまたは150ストロークまで、すべての機能が無料。その後は一度買えばずっと使えます</p></div>
+    <div><ul><li>買い切り、サブスクなし</li><li>広告なし</li><li>アカウント不要。データはあなたのデバイスと iCloud の中だけ</li><li>Apple Watch Series 6、SE（第2世代）、Ultra 以降</li></ul></div>
   </div>
-</section>
-
-<section class="block" aria-labelledby="v">
-  <p class="label-sec">プライバシー</p>
-  <div class="card feature"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 3.5l7 2.8v5.2c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6.3z M9 12l2.2 2.2L15.5 10"/></svg><h2 id="v" style="font-size:22px">アカウントなし。サーバーなし。データ収集なし。</h2>
-  <p>練習のデータは、あなたのデバイス、あなたの iCloud、ヘルスケアの中だけに保存されます。私たちが見ることはできません。</p><p><a href="privacy.html">プライバシーポリシー</a> · <a href="support.html">サポートとよくある質問</a></p></div>
-</section>
+</div></div></section>
 </main>
 <footer>
-  <nav aria-label="サイト"><a href="../ja/">ホーム</a><a href="../ja/support.html">サポート</a><a href="../ja/privacy.html">プライバシー</a><a href="../ja/terms.html">利用規約</a></nav>
-  <p>TrueCue（Twin Build）。ビリヤードとスヌーカーの練習アプリです。計測機器ではありません。お問い合わせ：<a href="mailto:twinbuilds30@gmail.com">twinbuilds30@gmail.com</a></p>
-  <p>Apple、Apple Watch、iPhone、iCloud、App Store は Apple Inc. の商標です。</p>
+  <div class="wrap">
+    <div class="row">
+      <div>サポート：<a href="mailto:twinbuilds30@gmail.com">twinbuilds30@gmail.com</a> · 48時間以内にお返事します</div>
+      <nav aria-label="サイト"><a href="../ja/support.html">サポート</a><a href="../ja/privacy.html">プライバシー</a><a href="../ja/terms.html">利用規約</a></nav>
+    </div>
+    <p class="tm">Apple、Apple Watch、iPhone、iCloud、App Store は Apple Inc. の商標です。</p>
+  </div>
 </footer>
-</div>
 </body>
 </html>
