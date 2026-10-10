@@ -2,7 +2,7 @@
 
 > Wear your Apple Watch on your stroking hand. After every stroke it tells you whether it was straight, whether you accelerated and whether you held your finish. No sensor to buy.
 
-TrueCue is an iPhone and Apple Watch app by Twin Build for pool (8-ball, 9-ball), snooker and Chinese 8-ball players. The watch on the stroking hand measures every cue stroke and scores three things from 0 to 100: Straight, Accelerate, Pause & Finish. No sensor on the cue. When a stroke cannot be measured it shows "Not measured" instead of a score. Free for the first 3 sessions or 150 strokes, then a monthly or yearly subscription or a one-time purchase; no ads, no account.
+TrueCue is an iPhone and Apple Watch app by Twin Build for pool (8-ball, 9-ball), snooker and Chinese 8-ball players. The watch on the stroking hand measures every cue stroke and scores three things from 0 to 100: Straight, Accelerate, Pause & Finish. No sensor on the cue. When a stroke cannot be measured it shows "Not measured" instead of a score. Free for the first 50 strokes, then a monthly or yearly subscription or a one-time purchase; no ads, no account.
 
 ## Pages
 
@@ -24,12 +24,12 @@ TrueCue is an iPhone and Apple Watch app by Twin Build for pool (8-ball, 9-ball)
 ## Drills
 
 - Straight 10: 10 strokes in a row with Straight 85 or more
-- Pause Drill: Taps on your wrist set the rhythm; pause at the back on 8 of 10
+- Pause Drill: Pause at the back on 8 of 10 strokes
 - Stop Shot: Soft and medium strokes; hold the finish on 8 of 10
 - Rhythm: 10 strokes with the same tempo
 - Same Force: 10 strokes at the same speed
 - Power Ladder: 3 soft, 3 medium, 3 hard, on call
-- Perfect 10: 10 strokes in a row scoring 85 or more
+- Perfect 10: 10 strokes in a row scoring 80 or more
 
 Languages: English, 日本語, 한국어, 繁體中文, 简体中文, Español, Français (each page has hreflang alternates).
 Support email: twinbuilds30@gmail.com
